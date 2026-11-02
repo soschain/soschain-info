@@ -18,6 +18,8 @@ La edición inglesa está en `http://localhost:8090/diptico-en.html` y conserva 
 
 La página pública de materiales del congreso está en `https://soschain.app/docs/` y enlaza los PDF en español e inglés.
 
+Las páginas informativas principal y inglesa muestran también una vista previa de las tres páginas del PDF en sus secciones `#congreso` y `#congress`.
+
 ## Pruebas
 
 ```bash

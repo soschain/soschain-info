@@ -19,6 +19,7 @@ const iconOptionsCss = await readFile(new URL('../opciones-iconos.css', import.m
 const publicDocsIndex = await readFile(new URL('../docs/index.html', import.meta.url), 'utf8').catch(() => '');
 const spanishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-ES.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
 const englishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-EN.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
+const congressMaterialsCss = await readFile(new URL('../congress-materials.css', import.meta.url), 'utf8').catch(() => '');
 
 test('is a Spanish SOSChain site with official branding and separate portal access', () => {
   assert.match(html, /<html lang="es">/);
@@ -350,6 +351,28 @@ test('publishes both three-page congress PDFs from one bilingual docs page', () 
     assert.ok(pdf.length > 100_000);
     assert.equal(pdf.subarray(0, 4).toString('ascii'), '%PDF');
   }
+});
+
+test('embeds the matching congress PDF inside each public information page', () => {
+  assert.match(html, /<a href="#congreso">Materiales para congreso<\/a>/i);
+  assert.match(html, /<section class="section congress-materials" id="congreso">/i);
+  const spanishCongressSection = html.match(/<section class="section congress-materials" id="congreso">[\s\S]*?<\/section>/i)?.[0] ?? '';
+  assert.equal((spanishCongressSection.match(/class="congress-pdf-page"/g) ?? []).length, 3);
+  assert.match(spanishCongressSection, /src="docs\/previews\/SOSChain-congress-ES-page-1\.png"[^>]*alt="Página 1 de 3/i);
+  assert.match(spanishCongressSection, /src="docs\/previews\/SOSChain-congress-ES-page-3\.png"[^>]*alt="Página 3 de 3/i);
+  assert.match(html, /href="docs\/SOSChain-three-congress-panels-ES\.pdf"[^>]*>Abrir PDF completo/i);
+
+  assert.match(englishHtml, /<a href="#congress">Congress materials<\/a>/i);
+  assert.match(englishHtml, /<section class="section congress-materials" id="congress">/i);
+  const englishCongressSection = englishHtml.match(/<section class="section congress-materials" id="congress">[\s\S]*?<\/section>/i)?.[0] ?? '';
+  assert.equal((englishCongressSection.match(/class="congress-pdf-page"/g) ?? []).length, 3);
+  assert.match(englishCongressSection, /src="docs\/previews\/SOSChain-congress-EN-page-1\.png"[^>]*alt="Page 1 of 3/i);
+  assert.match(englishCongressSection, /src="docs\/previews\/SOSChain-congress-EN-page-3\.png"[^>]*alt="Page 3 of 3/i);
+  assert.match(englishHtml, /href="docs\/SOSChain-three-congress-panels-EN\.pdf"[^>]*>Open full PDF/i);
+
+  assert.doesNotMatch(spanishCongressSection, /<iframe/i);
+  assert.doesNotMatch(englishCongressSection, /<iframe/i);
+  assert.match(congressMaterialsCss, /\.congress-pdf-preview\s*\{[^}]*grid-template-columns:\s*repeat\(3/is);
 });
 
 test('opens with three numbered steps for the card, index and emergency data', () => {
