@@ -14,6 +14,10 @@ La presentación para congreso está en `http://localhost:8090/presentacion.html
 
 Las láminas para congreso están en `http://localhost:8090/diptico.html`. Constan de tres páginas A4 horizontales independientes; cada página puede ampliarse proporcionalmente a A3 horizontal.
 
+La edición inglesa está en `http://localhost:8090/diptico-en.html` y conserva las mismas tres páginas A4 horizontales.
+
+La página pública de materiales del congreso está en `https://soschain.app/docs/` y enlaza los PDF en español e inglés.
+
 ## Pruebas
 
 ```bash
