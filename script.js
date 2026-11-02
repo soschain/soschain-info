@@ -75,5 +75,26 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 
 document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
+
+document.querySelectorAll('.soschain-video-player').forEach(player => {
+  player.addEventListener('click', () => {
+    const videoId = player.dataset.videoId;
+    const captionLanguage = player.dataset.captionLanguage;
+    if (!videoId) return;
+
+    const captionParams = captionLanguage
+      ? `&cc_load_policy=1&cc_lang_pref=${encodeURIComponent(captionLanguage)}`
+      : '';
+    const frame = document.createElement('iframe');
+    frame.className = 'soschain-video-frame';
+    frame.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0${captionParams}`;
+    frame.title = player.dataset.videoTitle || 'SOSChain video';
+    frame.allow = 'autoplay; encrypted-media; picture-in-picture';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.allowFullscreen = true;
+    player.replaceWith(frame);
+  }, { once: true });
+});
+
 const year = document.querySelector('[data-year]');
 if (year) year.textContent = new Date().getFullYear();
