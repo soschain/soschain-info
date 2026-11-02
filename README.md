@@ -20,6 +20,16 @@ La página pública de información está en `https://soschain.app/docs/` y enla
 
 La página inglesa principal (`/`) y la española (`/es.html`) muestran también una vista previa de las tres páginas del PDF en `#information` y `#informacion`.
 
+## Publicación
+
+La publicación por FTPS se realiza siempre con sustitución atómica:
+
+```bash
+npm run deploy
+```
+
+El script sube y verifica cada archivo con un nombre temporal antes de renombrarlo sobre el archivo público. Nunca se debe subir `index.html` directamente, porque durante una transferencia directa Raiola puede servir su página predeterminada. Para publicar solo archivos concretos: `npm run deploy -- index.html site-shell.css`.
+
 ## Pruebas
 
 ```bash
