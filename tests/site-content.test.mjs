@@ -1,10 +1,11 @@
-// Flow contract: the Spanish SOSChain public site explains emergency coordination and isolated public-health statistics without linking people, histories, or Digital Twins.
+// Flow contract: SOSChain defaults to English, selects supported Spanish browser locales, preserves manual language choice, and keeps both languages complete.
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 
-const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
-const englishHtml = await readFile(new URL('../en.html', import.meta.url), 'utf8').catch(() => '');
+const html = await readFile(new URL('../es.html', import.meta.url), 'utf8').catch(() => '');
+const englishHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+const legacyEnglishHtml = await readFile(new URL('../en.html', import.meta.url), 'utf8').catch(() => '');
 const css = await readFile(new URL('../styles.css', import.meta.url), 'utf8');
 const script = await readFile(new URL('../script.js', import.meta.url), 'utf8');
 const siteShellCss = await readFile(new URL('../site-shell.css', import.meta.url), 'utf8').catch(() => '');
@@ -51,12 +52,12 @@ test('provides complete Spanish and English entry pages with one verified beta a
   assert.match(html, /class="account-menu"/);
   assert.match(html, /Personal \(beta\)/);
   assert.match(html, /Professional \(beta\)/);
-  assert.match(html, /<select id="language-select"[^>]*aria-label="Idioma">[\s\S]*?<option value="index\.html" selected>Español<\/option>[\s\S]*?<option value="en\.html">English<\/option>[\s\S]*?<\/select>/i);
+  assert.match(html, /<select id="language-select"[^>]*aria-label="Idioma">[\s\S]*?<option value="es\.html" data-language="es" selected>Español<\/option>[\s\S]*?<option value="\.\/" data-language="en">English<\/option>[\s\S]*?<\/select>/i);
   assert.match(englishHtml, /<html lang="en">/);
   assert.match(englishHtml, /Create your Unified Health Card/i);
   assert.match(englishHtml, /Your family can follow your journey through the hospital/i);
   assert.match(englishHtml, /Three situations where SOSChain helps/i);
-  assert.match(englishHtml, /<select id="language-select"[^>]*aria-label="Language">[\s\S]*?<option value="index\.html">Español<\/option>[\s\S]*?<option value="en\.html" selected>English<\/option>[\s\S]*?<\/select>/i);
+  assert.match(englishHtml, /<select id="language-select"[^>]*aria-label="Language">[\s\S]*?<option value="es\.html" data-language="es">Español<\/option>[\s\S]*?<option value="\.\/" data-language="en" selected>English<\/option>[\s\S]*?<\/select>/i);
   const spanishNavigation = html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/i)?.[0] ?? '';
   const englishNavigation = englishHtml.match(/<nav class="site-nav"[\s\S]*?<\/nav>/i)?.[0] ?? '';
   const spanishAccountMenu = html.match(/<div class="account-menu"[\s\S]*?<\/div>\s*<\/div>/i)?.[0] ?? '';
@@ -71,13 +72,29 @@ test('provides complete Spanish and English entry pages with one verified beta a
   }
   assert.match(script, /accountToggle/);
   assert.match(script, /accountMenu/);
-  assert.match(script, /languageSelect[\s\S]*addEventListener\('change'[\s\S]*window\.location\.href\s*=\s*event\.target\.value/i);
+  assert.match(script, /languageSelect[\s\S]*addEventListener\('change'[\s\S]*localStorage\.setItem\('soschain-language',[\s\S]*window\.location\.href\s*=\s*selectedOption\.value/i);
   assert.match(script, /if \(year\) year\.textContent/);
   assert.match(siteShellCss, /\.reveal[\s\S]*?opacity:\s*1/);
   assert.match(
     siteShellCss,
     /@media\s*\(max-width:\s*760px\)[\s\S]*?\.account-menu\s*\{[^}]*position:\s*fixed[^}]*right:\s*16px[^}]*left:\s*16px/i,
   );
+});
+
+test('defaults to English and selects the first supported browser language', () => {
+  assert.match(englishHtml, /<html lang="en">/);
+  assert.match(englishHtml, /rel="canonical" href="https:\/\/soschain\.app\/"/);
+  assert.match(englishHtml, /hreflang="en" href="https:\/\/soschain\.app\/"/);
+  assert.match(englishHtml, /hreflang="es" href="https:\/\/soschain\.app\/es\.html"/);
+  assert.match(englishHtml, /hreflang="x-default" href="https:\/\/soschain\.app\/"/);
+  assert.match(englishHtml, /navigator\.languages/);
+  assert.match(englishHtml, /\['en',\s*'es'\]/);
+  assert.match(englishHtml, /localStorage\.getItem\('soschain-language'\)/);
+  assert.match(englishHtml, /location\.replace\(`es\.html\$\{location\.search\}\$\{location\.hash\}`\)/);
+
+  assert.match(html, /rel="canonical" href="https:\/\/soschain\.app\/es\.html"/);
+  assert.match(legacyEnglishHtml, /rel="canonical" href="https:\/\/soschain\.app\/"/);
+  assert.match(legacyEnglishHtml, /location\.replace\(`\.\/\$\{location\.search\}\$\{location\.hash\}`\)/);
 });
 
 test('presents unnumbered portal choices with a direct try action', () => {
@@ -398,10 +415,20 @@ test('shows the official 2025 English SOSChain video on both information pages',
   assert.match(html, /data-caption-language="es"/i);
   assert.doesNotMatch(html, /Vídeo oficial en inglés con subtítulos en español · 2025/i);
   assert.match(englishHtml, /<section class="section video-material" id="video-2025-en">/i);
-  assert.match(englishHtml, /Official English video · 2025/i);
+  assert.match(englishHtml, /Watch the SOSChain overview/i);
+  assert.doesNotMatch(englishHtml, /Official English video · 2025/i);
   assert.match(informationMaterialsCss, /\.soschain-video-player,\s*\.soschain-video-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*9/is);
   assert.match(script, /youtube-nocookie\.com\/embed\/\$\{videoId\}/);
   assert.match(script, /cc_lang_pref=\$\{encodeURIComponent\(captionLanguage\)\}/);
+});
+
+test('presents the three SOSChain principles as consistent blue tags', () => {
+  for (const page of [html, englishHtml]) {
+    assert.match(page, /class="container hero-proof"/i);
+  }
+  assert.match(siteShellCss, /\.hero-proof\s*\{[^}]*display:\s*flex[^}]*gap:\s*12px/is);
+  assert.match(siteShellCss, /\.hero-proof span\s*\{[^}]*border-radius:\s*999px[^}]*background:\s*var\(--blue\)[^}]*color:\s*#fff/is);
+  assert.match(siteShellCss, /\.hero-proof span \+ span\s*\{[^}]*border:\s*0/is);
 });
 
 test('opens with three numbered steps for the card, index and emergency data', () => {

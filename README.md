@@ -1,6 +1,6 @@
 # SOSChain.info
 
-Web pública estática en español para explicar SOSChain, los casos de uso de emergencia y la aportación de señales aisladas para salud pública.
+Web pública estática bilingüe para explicar SOSChain, los casos de uso de emergencia y la aportación de señales aisladas para salud pública. El inglés es el idioma predeterminado; el navegador abre español para las variantes `es-*`, y la elección manual queda guardada.
 
 ## Vista local
 
@@ -18,7 +18,7 @@ La edición inglesa está en `http://localhost:8090/diptico-en.html` y conserva 
 
 La página pública de información está en `https://soschain.app/docs/` y enlaza los PDF en español e inglés.
 
-Las páginas informativas principal e inglesa muestran también una vista previa de las tres páginas del PDF en sus secciones `#informacion` y `#information`.
+La página inglesa principal (`/`) y la española (`/es.html`) muestran también una vista previa de las tres páginas del PDF en `#information` y `#informacion`.
 
 ## Pruebas
 

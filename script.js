@@ -10,8 +10,11 @@ const accountMenu = document.querySelector('.account-menu');
 function applyTheme(theme) {
   root.dataset.theme = theme;
   const dark = theme === 'dark';
+  const spanish = root.lang === 'es';
   themeToggle?.setAttribute('aria-pressed', String(dark));
-  themeToggle?.setAttribute('aria-label', dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+  themeToggle?.setAttribute('aria-label', spanish
+    ? (dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro')
+    : (dark ? 'Switch to light mode' : 'Switch to dark mode'));
 }
 
 applyTheme(root.dataset.theme || 'light');
@@ -23,7 +26,9 @@ themeToggle?.addEventListener('click', () => {
 });
 
 languageSelect?.addEventListener('change', event => {
-  window.location.href = event.target.value;
+  const selectedOption = event.target.selectedOptions[0];
+  localStorage.setItem('soschain-language', selectedOption.dataset.language);
+  window.location.href = selectedOption.value;
 });
 
 if (fontSizeSelect) {

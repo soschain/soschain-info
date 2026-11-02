@@ -127,6 +127,28 @@
   line-height: 1.45;
 }
 
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 26px;
+  border: 0;
+}
+
+.hero-proof span {
+  flex: 1 1 220px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 750;
+  text-align: center;
+}
+
+.hero-proof span + span {
+  border: 0;
+}
+
 .hero-story {
   position: relative;
   min-height: 540px;
