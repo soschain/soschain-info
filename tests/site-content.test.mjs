@@ -422,12 +422,13 @@ test('shows the official 2025 English SOSChain video on both information pages',
   assert.match(script, /cc_lang_pref=\$\{encodeURIComponent\(captionLanguage\)\}/);
 });
 
-test('presents the three SOSChain principles as consistent blue tags', () => {
+test('presents the three SOSChain principles as compact blue tags sized to their text', () => {
   for (const page of [html, englishHtml]) {
     assert.match(page, /class="container hero-proof"/i);
   }
-  assert.match(siteShellCss, /\.hero-proof\s*\{[^}]*display:\s*flex[^}]*gap:\s*12px/is);
-  assert.match(siteShellCss, /\.hero-proof span\s*\{[^}]*border-radius:\s*999px[^}]*background:\s*var\(--blue\)[^}]*color:\s*#fff/is);
+  assert.match(siteShellCss, /\.hero-proof\s*\{[^}]*display:\s*flex[^}]*justify-content:\s*center[^}]*gap:\s*10px/is);
+  assert.match(siteShellCss, /\.hero-proof span\s*\{[^}]*flex:\s*0 0 auto[^}]*width:\s*max-content[^}]*max-width:\s*100%/is);
+  assert.match(siteShellCss, /\.hero-proof span\s*\{[^}]*padding:\s*8px 14px[^}]*border-radius:\s*999px[^}]*background:\s*var\(--blue\)[^}]*color:\s*#fff/is);
   assert.match(siteShellCss, /\.hero-proof span \+ span\s*\{[^}]*border:\s*0/is);
 });
 
