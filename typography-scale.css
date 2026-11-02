@@ -35,28 +35,33 @@ html[data-font-size="l"] {
 }
 
 .hero h1 {
-  font-size: clamp(3rem, calc(4.5rem + .7vw), 5.125rem);
+  font-size: clamp(2.625rem, calc(3.5rem + .5vw), 4.25rem);
 }
 
 .section-heading h2,
 .collective-intro h2,
 .privacy h2,
-.closing h2 {
-  font-size: clamp(2.4375rem, calc(3.25rem + .7vw), 3.875rem);
+.closing h2,
+.permission-intro h2,
+.video-material-copy h2 {
+  font-size: clamp(2.125rem, calc(2.5rem + .5vw), 3.125rem);
 }
 
 .closing h2 {
-  font-size: clamp(2.125rem, calc(2.75rem + .55vw), 3.25rem);
+  font-size: clamp(2rem, calc(2.25rem + .4vw), 2.75rem);
 }
 
 @media (max-width: 760px) {
   .hero h1 {
-    font-size: clamp(2.75rem, calc(2.8rem + 2vw), 3.875rem);
+    font-size: clamp(2.375rem, calc(2.25rem + 2vw), 3rem);
   }
 
   .section-heading h2,
   .collective-intro h2,
-  .privacy h2 {
-    font-size: clamp(2.3125rem, calc(2.05rem + 1.5vw), 3rem);
+  .privacy h2,
+  .closing h2,
+  .permission-intro h2,
+  .video-material-copy h2 {
+    font-size: clamp(1.875rem, calc(1.75rem + 1.5vw), 2.5rem);
   }
 }
