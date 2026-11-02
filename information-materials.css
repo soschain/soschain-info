@@ -1,8 +1,8 @@
-.congress-materials {
+.information-materials {
   background: var(--page);
 }
 
-.congress-pdf-shell {
+.information-pdf-shell {
   margin-top: 48px;
   padding: 12px;
   border: 1px solid var(--line);
@@ -11,13 +11,13 @@
   box-shadow: var(--shadow);
 }
 
-.congress-pdf-preview {
+.information-pdf-preview {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
-.congress-pdf-page {
+.information-pdf-page {
   margin: 0;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -25,18 +25,18 @@
   background: var(--page);
 }
 
-.congress-pdf-page a,
-.congress-pdf-page img {
+.information-pdf-page a,
+.information-pdf-page img {
   display: block;
   width: 100%;
 }
 
-.congress-pdf-page img {
+.information-pdf-page img {
   aspect-ratio: 297 / 210;
   object-fit: contain;
 }
 
-.congress-pdf-page figcaption {
+.information-pdf-page figcaption {
   padding: 9px 12px;
   border-top: 1px solid var(--line);
   color: var(--muted);
@@ -44,7 +44,7 @@
   font-weight: 700;
 }
 
-.congress-pdf-actions {
+.information-pdf-actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -52,7 +52,7 @@
   padding: 18px 8px 6px;
 }
 
-.congress-pdf-actions > span {
+.information-pdf-actions > span {
   color: var(--muted);
   font-size: var(--small-size);
   font-weight: 700;
@@ -149,16 +149,16 @@
 }
 
 @media (max-width: 760px) {
-  .congress-pdf-shell {
+  .information-pdf-shell {
     margin-top: 34px;
     padding: 8px;
   }
 
-  .congress-pdf-preview {
+  .information-pdf-preview {
     grid-template-columns: 1fr;
   }
 
-  .congress-pdf-actions {
+  .information-pdf-actions {
     align-items: stretch;
     flex-direction: column;
     gap: 14px;

@@ -17,9 +17,9 @@ const leafletCss = await readFile(new URL('../diptico.css', import.meta.url), 'u
 const iconOptions = await readFile(new URL('../opciones-iconos.html', import.meta.url), 'utf8').catch(() => '');
 const iconOptionsCss = await readFile(new URL('../opciones-iconos.css', import.meta.url), 'utf8').catch(() => '');
 const publicDocsIndex = await readFile(new URL('../docs/index.html', import.meta.url), 'utf8').catch(() => '');
-const spanishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-ES.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
-const englishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-EN.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
-const congressMaterialsCss = await readFile(new URL('../congress-materials.css', import.meta.url), 'utf8').catch(() => '');
+const spanishInformationPdf = await readFile(new URL('../docs/SOSChain-information-ES.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
+const englishInformationPdf = await readFile(new URL('../docs/SOSChain-information-EN.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
+const informationMaterialsCss = await readFile(new URL('../information-materials.css', import.meta.url), 'utf8').catch(() => '');
 const officialVideoPoster = await readFile(new URL('../assets/soschain-video-2025-en.jpg', import.meta.url)).catch(() => Buffer.alloc(0));
 const htaccess = await readFile(new URL('../.htaccess', import.meta.url), 'utf8').catch(() => '');
 
@@ -140,7 +140,7 @@ test('opens with the unified health card story on a white default presentation',
   assert.match(css, /data-theme="light"[^}]*--page:#fff/);
 });
 
-test('shows the congress patent note beside the unified identifier and uses legible step numbers', () => {
+test('shows the patent note beside the unified identifier and uses legible step numbers', () => {
   assert.match(html, /Un identificador de salud unificado para una persona o un animal<sup>\*<\/sup>/i);
   assert.match(html, /class="hero-patent-note"[^>]*>\* Patentes relacionadas: US 11,636,776 · 11,960,454 · 12,057,202 · 12,183,439/i);
   assert.match(englishHtml, /unified health identifier for a person or an animal<sup>\*<\/sup>/i);
@@ -266,10 +266,10 @@ test('scales the complete typography system for small, medium and large text', (
   assert.match(typographyScaleCss, /html\[data-font-size="s"\]\s*\{[^}]*font-size:\s*13px[^}]*--body-size:\s*1\.125rem[^}]*--small-size:\s*\.875rem/i);
   assert.match(typographyScaleCss, /html\[data-font-size="m"\]\s*\{[^}]*font-size:\s*14px[^}]*--body-size:\s*1\.125rem[^}]*--small-size:\s*\.875rem/i);
   assert.match(typographyScaleCss, /html\[data-font-size="l"\]\s*\{[^}]*font-size:\s*15px[^}]*--body-size:\s*1\.125rem[^}]*--small-size:\s*\.875rem/i);
-  assert.match(typographyScaleCss, /html\[data-theme="light"\]\s*\{[^}]*--ink:\s*#3f4750[^}]*--muted:\s*#66717c/i);
+  assert.match(typographyScaleCss, /html\[data-theme="light"\]\s*\{[^}]*--ink:\s*#3f4750[^}]*--heading-ink:\s*#535f6b[^}]*--muted:\s*#66717c/i);
   assert.match(typographyScaleCss, /\.hero-copy\s*>\s*p:not\(\.hero-kicker\)\s*\{[^}]*font-size:\s*var\(--body-size\)/i);
   assert.match(typographyScaleCss, /\.button\s*\{[^}]*font-size:\s*var\(--body-size\)/i);
-  assert.match(typographyScaleCss, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(2\.625rem,[^,]+,\s*4\.25rem\)/i);
+  assert.match(typographyScaleCss, /\.hero h1\s*\{[^}]*color:\s*var\(--heading-ink\)[^}]*font-size:\s*clamp\(2\.625rem,[^,]+,\s*4\.25rem\)/i);
   assert.match(typographyScaleCss, /\.permission-intro h2,[\s\S]*\.video-material-copy h2\s*\{[^}]*font-size:\s*clamp\(2\.125rem,[^,]+,\s*3\.125rem\)/i);
   assert.doesNotMatch(typographyScaleCss, /font-size:\s*clamp\([^;}]*px/);
 });
@@ -313,7 +313,7 @@ test('keeps the patent note with the main card explanation and out of the footer
   assert.doesNotMatch(englishFooter, /Related patents/i);
 });
 
-test('includes a white congress presentation derived from the same story', () => {
+test('includes a white information presentation derived from the same story', () => {
   assert.match(presentation, /class="slide cover"/);
   assert.match(presentation, /Tu información,[\s\S]*cuando más importa/i);
   assert.match(presentation, /¿Qué problema resuelve\?/i);
@@ -324,8 +324,8 @@ test('includes a white congress presentation derived from the same story', () =>
   assert.match(presentation, /window\.print\(\)/);
 });
 
-test('includes three independent landscape A4 congress pages that scale proportionally to A3', () => {
-  assert.match(leaflet, /<title>SOSChain — Materiales para congreso — Octubre 2026<\/title>/);
+test('includes three independent landscape A4 information pages that scale proportionally to A3', () => {
+  assert.match(leaflet, /<title>SOSChain — Información — Octubre 2026<\/title>/);
   assert.match(leaflet, /class="sheet page-one"/);
   assert.match(leaflet, /class="sheet page-two"/);
   assert.match(leaflet, /class="sheet page-three"/);
@@ -337,8 +337,8 @@ test('includes three independent landscape A4 congress pages that scale proporti
   assert.match(leafletCss, /--distance-copy:\s*18pt/);
 });
 
-test('includes a complete English edition of the three congress pages', () => {
-  assert.match(englishLeaflet, /<title>SOSChain — Congress materials — October 2026<\/title>/);
+test('includes a complete English edition of the three information pages', () => {
+  assert.match(englishLeaflet, /<title>SOSChain — Information — October 2026<\/title>/);
   assert.match(englishLeaflet, /<html lang="en">/);
   assert.equal((englishLeaflet.match(/class="sheet page-/g) ?? []).length, 3);
   assert.match(englishLeaflet, /Create your Unified Health Card/i);
@@ -349,39 +349,40 @@ test('includes a complete English edition of the three congress pages', () => {
   assert.doesNotMatch(englishLeaflet, /Página|Crea tu|Tú mantienes|Llamadas privadas/i);
 });
 
-test('publishes both three-page congress PDFs from one bilingual docs page', () => {
+test('publishes both three-page information PDFs from one bilingual docs page', () => {
   assert.match(publicDocsIndex, /<html lang="en">/);
-  assert.match(publicDocsIndex, /SOSChain congress materials/i);
-  assert.match(publicDocsIndex, /href="SOSChain-three-congress-panels-ES\.pdf"/);
-  assert.match(publicDocsIndex, /href="SOSChain-three-congress-panels-EN\.pdf"/);
+  assert.match(publicDocsIndex, /SOSChain information/i);
+  assert.match(publicDocsIndex, /href="SOSChain-information-ES\.pdf"/);
+  assert.match(publicDocsIndex, /href="SOSChain-information-EN\.pdf"/);
   assert.match(publicDocsIndex, /Español/);
   assert.match(publicDocsIndex, /English/);
-  for (const pdf of [spanishCongressPdf, englishCongressPdf]) {
+  for (const pdf of [spanishInformationPdf, englishInformationPdf]) {
     assert.ok(pdf.length > 100_000);
     assert.equal(pdf.subarray(0, 4).toString('ascii'), '%PDF');
   }
 });
 
-test('embeds the matching congress PDF inside each public information page', () => {
-  assert.match(html, /<a href="#congreso">Materiales para congreso<\/a>/i);
-  assert.match(html, /<section class="section congress-materials" id="congreso">/i);
-  const spanishCongressSection = html.match(/<section class="section congress-materials" id="congreso">[\s\S]*?<\/section>/i)?.[0] ?? '';
-  assert.equal((spanishCongressSection.match(/class="congress-pdf-page"/g) ?? []).length, 3);
-  assert.match(spanishCongressSection, /src="docs\/previews\/SOSChain-congress-ES-page-1\.png"[^>]*alt="Página 1 de 3/i);
-  assert.match(spanishCongressSection, /src="docs\/previews\/SOSChain-congress-ES-page-3\.png"[^>]*alt="Página 3 de 3/i);
-  assert.match(html, /href="docs\/SOSChain-three-congress-panels-ES\.pdf"[^>]*>Abrir PDF completo/i);
+test('shows the matching information PDF inside each public information page', () => {
+  assert.match(html, /<a href="#informacion">Información<\/a>/i);
+  assert.match(html, /<section class="section information-materials" id="informacion">/i);
+  const spanishInformationSection = html.match(/<section class="section information-materials" id="informacion">[\s\S]*?<\/section>/i)?.[0] ?? '';
+  assert.equal((spanishInformationSection.match(/class="information-pdf-page"/g) ?? []).length, 3);
+  assert.match(spanishInformationSection, /src="docs\/previews\/SOSChain-information-ES-page-1\.png"[^>]*alt="Página 1 de 3/i);
+  assert.match(spanishInformationSection, /src="docs\/previews\/SOSChain-information-ES-page-3\.png"[^>]*alt="Página 3 de 3/i);
+  assert.match(html, /href="docs\/SOSChain-information-ES\.pdf"[^>]*>Abrir PDF completo/i);
 
-  assert.match(englishHtml, /<a href="#congress">Congress materials<\/a>/i);
-  assert.match(englishHtml, /<section class="section congress-materials" id="congress">/i);
-  const englishCongressSection = englishHtml.match(/<section class="section congress-materials" id="congress">[\s\S]*?<\/section>/i)?.[0] ?? '';
-  assert.equal((englishCongressSection.match(/class="congress-pdf-page"/g) ?? []).length, 3);
-  assert.match(englishCongressSection, /src="docs\/previews\/SOSChain-congress-EN-page-1\.png"[^>]*alt="Page 1 of 3/i);
-  assert.match(englishCongressSection, /src="docs\/previews\/SOSChain-congress-EN-page-3\.png"[^>]*alt="Page 3 of 3/i);
-  assert.match(englishHtml, /href="docs\/SOSChain-three-congress-panels-EN\.pdf"[^>]*>Open full PDF/i);
+  assert.match(englishHtml, /<a href="#information">Information<\/a>/i);
+  assert.match(englishHtml, /<section class="section information-materials" id="information">/i);
+  const englishInformationSection = englishHtml.match(/<section class="section information-materials" id="information">[\s\S]*?<\/section>/i)?.[0] ?? '';
+  assert.equal((englishInformationSection.match(/class="information-pdf-page"/g) ?? []).length, 3);
+  assert.match(englishInformationSection, /src="docs\/previews\/SOSChain-information-EN-page-1\.png"[^>]*alt="Page 1 of 3/i);
+  assert.match(englishInformationSection, /src="docs\/previews\/SOSChain-information-EN-page-3\.png"[^>]*alt="Page 3 of 3/i);
+  assert.match(englishHtml, /href="docs\/SOSChain-information-EN\.pdf"[^>]*>Open full PDF/i);
 
-  assert.doesNotMatch(spanishCongressSection, /<iframe/i);
-  assert.doesNotMatch(englishCongressSection, /<iframe/i);
-  assert.match(congressMaterialsCss, /\.congress-pdf-preview\s*\{[^}]*grid-template-columns:\s*repeat\(3/is);
+  assert.doesNotMatch(spanishInformationSection, /<iframe/i);
+  assert.doesNotMatch(englishInformationSection, /<iframe/i);
+  assert.match(informationMaterialsCss, /\.information-pdf-preview\s*\{[^}]*grid-template-columns:\s*repeat\(3/is);
+  for (const page of [html, englishHtml, publicDocsIndex, leaflet, englishLeaflet]) assert.doesNotMatch(page, /congress|congreso/i);
 });
 
 test('shows the official 2025 English SOSChain video on both information pages', () => {
@@ -397,7 +398,7 @@ test('shows the official 2025 English SOSChain video on both information pages',
   assert.doesNotMatch(html, /Vídeo oficial en inglés con subtítulos en español · 2025/i);
   assert.match(englishHtml, /<section class="section video-material" id="video-2025-en">/i);
   assert.match(englishHtml, /Official English video · 2025/i);
-  assert.match(congressMaterialsCss, /\.soschain-video-player,\s*\.soschain-video-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*9/is);
+  assert.match(informationMaterialsCss, /\.soschain-video-player,\s*\.soschain-video-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*9/is);
   assert.match(script, /youtube-nocookie\.com\/embed\/\$\{videoId\}/);
   assert.match(script, /cc_lang_pref=\$\{encodeURIComponent\(captionLanguage\)\}/);
 });
