@@ -1,4 +1,4 @@
-# SOSChain: contenido maestro para congreso y díptico
+# SOSChain: contenido maestro para información y díptico
 
 Este texto utiliza la misma explicación que la web. La presentación debe llevar fondo blanco, el logotipo original de SOSChain, mucho espacio y una sola idea por diapositiva.
 
@@ -72,7 +72,7 @@ Dos accesos:
 - SOSChain Personal (beta), para personas, familiares y cuidadores.
 - SOSChain Professional (beta), para profesionales y servicios verificados.
 
-## Tres láminas para congreso
+## Tres láminas para información
 
 Formato: tres páginas A4 horizontales independientes. Cada página puede ampliarse proporcionalmente a A3 horizontal. Los títulos y textos esenciales se diseñan para lectura a distancia; solo la nota legal de patentes utiliza cuerpo pequeño.
 
