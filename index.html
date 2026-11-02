@@ -1,206 +1,161 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SOSChain ayuda a preparar información de emergencia, mantener conectadas a las personas y aportar reportes anónimos para la salud pública.">
+  <meta name="description" content="SOSChain provides a unified health identifier for people and animals, a health index and controlled emergency communication.">
   <meta name="theme-color" content="#ffffff">
-  <title>SOSChain | Información y coordinación cuando importa</title>
+  <title>SOSChain | Information and coordination when it matters</title>
+  <link rel="canonical" href="https://soschain.app/">
+  <link rel="alternate" hreflang="en" href="https://soschain.app/">
+  <link rel="alternate" hreflang="es" href="https://soschain.app/es.html">
+  <link rel="alternate" hreflang="x-default" href="https://soschain.app/">
   <link rel="icon" href="assets/soschain-logo.svg" type="image/svg+xml">
+  <script>try{const supportedLanguages=['en','es'];const savedLanguage=localStorage.getItem('soschain-language');const browserLanguages=Array.isArray(navigator.languages)&&navigator.languages.length?navigator.languages:[navigator.language];const detectedLanguage=browserLanguages.map(language=>(language||'').toLowerCase().split('-')[0]).find(language=>supportedLanguages.includes(language));const activeLanguage=supportedLanguages.includes(savedLanguage)?savedLanguage:(detectedLanguage||'en');if(activeLanguage==='es')location.replace(`es.html${location.search}${location.hash}`)}catch(error){/* English remains the default. */}</script>
   <script>try{const t=localStorage.getItem('soschain-theme');document.documentElement.dataset.theme=t||'light';const s=localStorage.getItem('soschain-font-size');document.documentElement.dataset.fontSize=['s','m','l'].includes(s)?s:'m'}catch(e){document.documentElement.dataset.theme='light';document.documentElement.dataset.fontSize='m'}</script>
   <link rel="stylesheet" href="styles.css?v=20261026-2">
   <link rel="stylesheet" href="information-materials.css?v=20261102-3">
   <link rel="stylesheet" href="overview.css?v=20261028-4">
-  <link rel="stylesheet" href="site-shell.css?v=20261101-8">
+  <link rel="stylesheet" href="site-shell.css?v=20261102-9">
   <link rel="stylesheet" href="typography-scale.css?v=20261102-6">
 </head>
 <body>
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#content">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#inicio" aria-label="SOSChain, inicio">
-        <img src="assets/soschain-logo.svg" alt="SOSChain" width="248" height="166">
-      </a>
+      <a class="brand" href="#home" aria-label="SOSChain, home"><img src="assets/soschain-logo.svg" alt="SOSChain" width="248" height="166"></a>
       <div class="header-actions">
-        <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
-          <a href="#que-es">Cómo funciona</a>
-          <a href="#emergencias">Emergencias</a>
-          <a href="#informacion">Información</a>
-          <a href="#salud-publica">Reportes voluntarios</a>
-          <a href="#acceso">Acceso</a>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a href="#how-it-works">How it works</a>
+          <a href="#emergencies">Emergencies</a>
+          <a href="#information">Information</a>
+          <a href="#public-health">Voluntary reports</a>
+          <a href="#access">Access</a>
         </nav>
         <div class="account-access">
-          <button class="account-toggle" type="button" aria-expanded="false" aria-controls="account-menu" aria-label="Abrir acceso (beta)">
+          <button class="account-toggle" type="button" aria-expanded="false" aria-controls="account-menu" aria-label="Open access (beta)">
             <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.8-5 3.3-7.5 7.5-7.5s6.7 2.5 7.5 7.5"/></svg>
           </button>
           <div class="account-menu" id="account-menu" hidden>
-            <strong>Acceder a SOSChain</strong>
-            <a href="https://personal-st.soschain.app/es" target="_blank" rel="noreferrer"><span>Personal (beta)</span><small>Personas, familiares y cuidadores</small></a>
-            <a href="https://professional-st.soschain.app/es" target="_blank" rel="noreferrer"><span>Professional (beta)</span><small>Profesionales y emergencias</small></a>
-            <div class="account-settings" aria-label="Preferencias">
-              <label class="account-setting language-control" for="language-select"><span>Idioma</span><select id="language-select" aria-label="Idioma"><option value="index.html" selected>Español</option><option value="en.html">English</option></select></label>
-              <label class="account-setting font-control" for="font-size-select"><span>Tamaño del texto</span><select id="font-size-select" aria-label="Tamaño del texto"><option value="s">S</option><option value="m" selected>M</option><option value="l">L</option></select></label>
-            </div>
+            <strong>Access SOSChain</strong>
+            <a href="https://personal-st.soschain.app/en" target="_blank" rel="noreferrer"><span>Personal (beta)</span><small>People, families and caregivers</small></a>
+            <a href="https://professional-st.soschain.app/en" target="_blank" rel="noreferrer"><span>Professional (beta)</span><small>Professionals and emergency services</small></a>
+            <div class="account-settings" aria-label="Preferences"><label class="account-setting language-control" for="language-select"><span>Language</span><select id="language-select" aria-label="Language"><option value="es.html" data-language="es">Español</option><option value="./" data-language="en" selected>English</option></select></label><label class="account-setting font-control" for="font-size-select"><span>Text size</span><select id="font-size-select" aria-label="Text size"><option value="s">S</option><option value="m" selected>M</option><option value="l">L</option></select></label></div>
           </div>
         </div>
-        <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" aria-pressed="true">
+        <button class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="true">
           <svg class="theme-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
           <svg class="theme-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M20 15.2A8.5 8.5 0 0 1 8.8 4a8.5 8.5 0 1 0 11.2 11.2Z"/></svg>
         </button>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Abrir navegación</span></button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><span></span><span></span><span></span><span class="sr-only">Open navigation</span></button>
       </div>
     </div>
   </header>
 
-  <main id="contenido">
-    <section class="hero" id="inicio">
+  <main id="content">
+    <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <p class="hero-kicker">SOSCHAIN</p>
-          <h1>Crea tu Tarjeta de Salud Unificada</h1>
-          <p>Un identificador de salud unificado para una persona o un animal<sup>*</sup>. Recibe notificaciones seguras de nuevos datos disponibles en tiempo real y prepara información para emergencias bajo tu control.</p>
-          <small class="hero-patent-note">* Patentes relacionadas: US 11,636,776 · 11,960,454 · 12,057,202 · 12,183,439</small>
+          <h1>Create your Unified Health Card</h1>
+          <p>A unified health identifier for a person or an animal<sup>*</sup>. Receive secure notifications of new data available in real time and prepare emergency information under your control.</p>
+          <small class="hero-patent-note">* Related patents: US 11,636,776 · 11,960,454 · 12,057,202 · 12,183,439</small>
           <div class="hero-actions">
-            <a class="button button-primary" href="https://personal-st.soschain.app/es" target="_blank" rel="noreferrer">Preparar mi tarjeta <span aria-hidden="true">→</span></a>
-            <a class="button button-secondary" href="https://professional-st.soschain.app/es" target="_blank" rel="noreferrer">Soy profesional</a>
+            <a class="button button-primary" href="https://personal-st.soschain.app/en" target="_blank" rel="noreferrer">Prepare my card <span aria-hidden="true">→</span></a>
+            <a class="button button-secondary" href="https://professional-st.soschain.app/en" target="_blank" rel="noreferrer">I am a professional</a>
           </div>
         </div>
-        <div class="hero-story reveal" role="img" aria-label="Una Tarjeta de Salud Unificada con notificaciones seguras y una llamada privada de emergencia">
-          <article class="story-card">
-            <div class="story-card-top"><img src="assets/soschain-logo.svg" alt="" width="248" height="166"><span>Persona o animal*</span></div>
-            <strong>Tarjeta de Salud Unificada</strong>
-            <div class="story-card-content">
-              <section class="story-index"><span>Tu índice te avisa</span><strong>Notificaciones seguras de nuevos datos disponibles en tiempo real</strong></section>
-            </div>
-          </article>
-          <section class="story-call"><span class="story-phone" aria-hidden="true">☎</span><div><small>En una emergencia</small><strong>Llamada privada a tus contactos</strong><span>Sin mostrar los números personales</span></div></section>
-        </div>
+        <div class="hero-story reveal" role="img" aria-label="A Unified Health Card with secure notifications and a private emergency call"><article class="story-card"><div class="story-card-top"><img src="assets/soschain-logo.svg" alt="" width="248" height="166"><span>Person or animal*</span></div><strong>Unified Health Card</strong><div class="story-card-content"><section class="story-index"><span>Your index alerts you</span><strong>Secure notifications of new data available in real time</strong></section></div></article><section class="story-call"><span class="story-phone" aria-hidden="true">☎</span><div><small>In an emergency</small><strong>Private call to your contacts</strong><span>Without showing personal numbers</span></div></section></div>
       </div>
-      <div class="container hero-proof" aria-label="Principios de SOSChain">
-        <span>Una tarjeta para personas o animales</span><span>Un índice que enlaza los datos</span><span>Tú mantienes el control</span>
-      </div>
+      <div class="container hero-proof" aria-label="SOSChain principles"><span>One card for people or animals</span><span>An index linking to the data</span><span>You remain in control</span></div>
     </section>
 
-    <section class="section overview" id="que-es">
+    <section class="section overview" id="how-it-works">
       <div class="container">
-        <div class="section-heading reveal">
-          <div><p class="section-label">SOSChain en tres pasos</p><h2>Tu tarjeta, tu índice y tus datos para emergencias</h2></div>
-          <p>Para ti, para una persona dependiente o para un animal que está a tu cargo.</p>
-        </div>
+        <div class="section-heading reveal"><div><p class="section-label">SOSChain in three steps</p><h2>Your card, your health index and your emergency data</h2></div><p>For you, a dependent person or an animal in your care.</p></div>
         <div class="overview-grid">
-          <article class="overview-card reveal"><span>1</span><h3>Crea la tarjeta</h3><p>Es el identificador de salud unificado de una persona o de un animal. Puedes asociar otros identificadores de salud a la misma tarjeta.</p></article>
-          <article class="overview-card reveal"><span>2</span><h3>Tu índice de salud</h3><p>Funciona como el índice de un libro: contiene enlaces que indican dónde están los datos reales. Las organizaciones verificadas pueden actualizarlo.</p></article>
-          <article class="overview-card reveal"><span>3</span><h3>Prepara datos para emergencias</h3><p>Crea datos para ti, para una persona dependiente o para un animal. El servicio de copia de seguridad de Fundación UNID permite enlazarlos en tu índice.</p></article>
+          <article class="overview-card reveal"><span>1</span><h3>Create the card</h3><p>It is the unified health identifier of a person or an animal. Other health identifiers can be linked to the same card.</p></article>
+          <article class="overview-card reveal"><span>2</span><h3>Your health index</h3><p>It works like a book index: it contains links that show where the real data is held. Verified organisations can update it.</p></article>
+          <article class="overview-card reveal"><span>3</span><h3>Prepare emergency data</h3><p>Create data for yourself, a dependent person or an animal. Fundación UNID's backup service lets you link it to your index.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section questions" id="preguntas">
+    <section class="section questions" id="control">
       <div class="container">
-        <div class="permission-hero reveal">
-          <div class="permission-intro"><p class="section-label">Permisos y confianza</p><h2>Tú decides quién puede acceder</h2></div>
-          <section class="permission-panel" aria-labelledby="permission-title">
-            <div class="permission-panel-copy"><h3 id="permission-title">Tres formas de dar permiso</h3></div>
-            <div class="permission-scopes">
-              <article class="permission-scope"><span class="permission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.2 3.3 4.9 3.3 8S14.2 17.8 12 20M12 4c-2.2 2.2-3.3 4.9-3.3 8s1.1 5.8 3.3 8"/></svg></span><h3>Por país</h3></article>
-              <article class="permission-scope"><span class="permission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20V7l7-3 7 3v13M9 9h.01M12 9h.01M15 9h.01M9 12h.01M12 12h.01M15 12h.01M9 20v-4h6v4M3 20h18"/></svg></span><h3>Por organización</h3></article>
-              <article class="permission-scope"><span class="permission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><h3>Por e-mail profesional</h3></article>
-            </div>
-          </section>
-        </div>
-        <aside class="trust-chain reveal"><strong>Profesionales verificados</strong><p>Las organizaciones están verificadas en el espacio de datos y cada empleador acredita a sus profesionales y sus roles.</p></aside>
-        <section class="care-panel reveal" aria-labelledby="care-title">
-          <div class="care-copy"><p class="section-label">Información para las personas autorizadas</p><h3 id="care-title">Tu familia puede seguir tu recorrido por el hospital</h3><p>Las personas que autorices pueden saber si estás en urgencias, haciéndote pruebas o en planta, a medida que el hospital actualiza la información.</p></div>
-          <ol class="care-journey"><li><span>1</span><strong>Urgencias</strong></li><li><span>2</span><strong>Pruebas</strong></li><li><span>3</span><strong>Planta</strong></li></ol>
-          <p class="care-communications"><strong>También reciben comunicaciones y llamadas</strong><span>Los números de teléfono personales no se muestran.</span></p>
-        </section>
+        <div class="permission-hero reveal"><div class="permission-intro"><p class="section-label">Permissions and trust</p><h2>You decide who may access</h2></div><section class="permission-panel" aria-labelledby="permission-title"><div class="permission-panel-copy"><h3 id="permission-title">Three ways to give permission</h3></div><div class="permission-scopes"><article class="permission-scope"><span class="permission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4c2.2 2.2 3.3 4.9 3.3 8S14.2 17.8 12 20M12 4c-2.2 2.2-3.3 4.9-3.3 8s1.1 5.8 3.3 8"/></svg></span><h3>By country</h3></article><article class="permission-scope"><span class="permission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20V7l7-3 7 3v13M9 9h.01M12 9h.01M15 9h.01M9 12h.01M12 12h.01M15 12h.01M9 20v-4h6v4M3 20h18"/></svg></span><h3>By organisation</h3></article><article class="permission-scope"><span class="permission-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><h3>By professional e-mail</h3></article></div></section></div>
+        <aside class="trust-chain reveal"><strong>Verified professionals</strong><p>Organisations are verified in the data space, and each employer verifies its professionals and their roles.</p></aside>
+        <section class="care-panel reveal" aria-labelledby="care-title"><div class="care-copy"><p class="section-label">Information for authorised people</p><h3 id="care-title">Your family can follow your journey through the hospital</h3><p>People you authorise can see whether you are in emergency, having tests or on a ward as the hospital updates the information.</p></div><ol class="care-journey"><li><span>1</span><strong>Emergency</strong></li><li><span>2</span><strong>Tests</strong></li><li><span>3</span><strong>Ward</strong></li></ol><p class="care-communications"><strong>They can also receive messages and calls</strong><span>Personal phone numbers are not shown.</span></p></section>
       </div>
     </section>
 
-    <section class="section emergency" id="emergencias">
+    <section class="section emergency" id="emergencies">
       <div class="container">
-        <div class="section-heading reveal">
-          <div><p class="section-label">En una emergencia</p><h2>Tres situaciones en las que SOSChain ayuda</h2></div>
-          <p>Para policías, profesionales sanitarios, socorristas y personas autorizadas.</p>
-        </div>
+        <div class="section-heading reveal"><div><p class="section-label">In an emergency</p><h2>Three situations where SOSChain helps</h2></div><p>For police, healthcare professionals, first responders and authorised people.</p></div>
         <div class="emergency-flow">
-          <article class="emergency-step reveal"><span class="step-number">1</span><h3>La persona no responde</h3><p>Un policía, un profesional sanitario o un socorrista atiende a una persona que no responde o está desorientada. Mediante el identificador SOSChain puede iniciar una llamada privada a sus contactos de emergencia.</p></article>
-          <article class="emergency-step reveal"><span class="step-number">2</span><h3>Solo está el QR del animal</h3><p>Si la persona no lleva su tarjeta, el QR SOSChain del animal que la acompaña permite iniciar una llamada privada a los contactos autorizados, sin revelar los números.</p></article>
-          <article class="emergency-step reveal"><span class="step-number">3</span><h3>La familia espera noticias</h3><p>Las personas autorizadas pueden consultar el recorrido por urgencias, pruebas y planta y recibir comunicaciones y llamadas a medida que el servicio lo actualiza.</p></article>
+          <article class="emergency-step reveal"><span class="step-number">1</span><h3>The person does not respond</h3><p>A police officer, healthcare professional or first responder assists a person who is unresponsive or disoriented. Using the SOSChain identifier, the professional can start a private call to the person's emergency contacts.</p></article>
+          <article class="emergency-step reveal"><span class="step-number">2</span><h3>Only the animal's QR is available</h3><p>If the person has no card, the accompanying animal's SOSChain QR can be used to start a private call to authorised contacts without revealing phone numbers.</p></article>
+          <article class="emergency-step reveal"><span class="step-number">3</span><h3>The family is waiting for news</h3><p>Authorised people can follow emergency admission, tests and ward transfer, and receive communications and calls as the service updates the journey.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section information-materials" id="informacion">
+    <section class="section information-materials" id="information">
       <div class="container">
         <div class="section-heading reveal">
-          <div><p class="section-label">Información de SOSChain</p><h2>Entiende SOSChain en tres páginas</h2></div>
-          <p>La Tarjeta de Salud Unificada, los permisos y tres situaciones de emergencia, en un PDF de tres páginas A4 horizontales.</p>
+          <div><p class="section-label">SOSChain information</p><h2>Understand SOSChain in three pages</h2></div>
+          <p>The Unified Health Card, permissions and three emergency situations in a three-page landscape A4 PDF.</p>
         </div>
         <div class="information-pdf-shell reveal">
-          <div class="information-pdf-preview" role="group" aria-label="Vista previa de las tres páginas del PDF">
-            <figure class="information-pdf-page"><a href="docs/SOSChain-information-ES.pdf#page=1" target="_blank" rel="noreferrer"><img src="docs/previews/SOSChain-information-ES-page-1.png" alt="Página 1 de 3: Crea tu Tarjeta de Salud Unificada" loading="lazy" decoding="async"></a><figcaption>Página 1</figcaption></figure>
-            <figure class="information-pdf-page"><a href="docs/SOSChain-information-ES.pdf#page=2" target="_blank" rel="noreferrer"><img src="docs/previews/SOSChain-information-ES-page-2.png" alt="Página 2 de 3: Tú mantienes el control" loading="lazy" decoding="async"></a><figcaption>Página 2</figcaption></figure>
-            <figure class="information-pdf-page"><a href="docs/SOSChain-information-ES.pdf#page=3" target="_blank" rel="noreferrer"><img src="docs/previews/SOSChain-information-ES-page-3.png" alt="Página 3 de 3: tres situaciones en las que SOSChain ayuda" loading="lazy" decoding="async"></a><figcaption>Página 3</figcaption></figure>
+          <div class="information-pdf-preview" role="group" aria-label="Preview of all three PDF pages">
+            <figure class="information-pdf-page"><a href="docs/SOSChain-information-EN.pdf#page=1" target="_blank" rel="noreferrer"><img src="docs/previews/SOSChain-information-EN-page-1.png" alt="Page 1 of 3: Create your Unified Health Card" loading="lazy" decoding="async"></a><figcaption>Page 1</figcaption></figure>
+            <figure class="information-pdf-page"><a href="docs/SOSChain-information-EN.pdf#page=2" target="_blank" rel="noreferrer"><img src="docs/previews/SOSChain-information-EN-page-2.png" alt="Page 2 of 3: You stay in control" loading="lazy" decoding="async"></a><figcaption>Page 2</figcaption></figure>
+            <figure class="information-pdf-page"><a href="docs/SOSChain-information-EN.pdf#page=3" target="_blank" rel="noreferrer"><img src="docs/previews/SOSChain-information-EN-page-3.png" alt="Page 3 of 3: three situations where SOSChain helps" loading="lazy" decoding="async"></a><figcaption>Page 3</figcaption></figure>
           </div>
-          <div class="information-pdf-actions"><span>Versión en español · 3 páginas</span><a class="button button-primary" href="docs/SOSChain-information-ES.pdf" target="_blank" rel="noreferrer">Abrir PDF completo <span aria-hidden="true">↗</span></a></div>
+          <div class="information-pdf-actions"><span>English edition · 3 pages</span><a class="button button-primary" href="docs/SOSChain-information-EN.pdf" target="_blank" rel="noreferrer">Open full PDF <span aria-hidden="true">↗</span></a></div>
         </div>
       </div>
     </section>
 
-    <section class="section video-material" id="video-2025">
+    <section class="section video-material" id="video-2025-en">
       <div class="container video-material-grid">
         <div class="video-material-copy reveal">
+          <p class="section-label">Watch the SOSChain overview</p>
           <h2>SOSCHAIN: Transforming Global Health Identity to Protect You</h2>
-          <p>El vídeo está narrado en inglés. Activa los subtítulos en español desde el control de subtítulos del reproductor.</p>
-          <a class="button button-secondary" href="https://www.youtube.com/watch?v=L8AFQC2NttM" target="_blank" rel="noreferrer">Ver en YouTube <span aria-hidden="true">↗</span></a>
+          <p>Learn how SOSChain helps people locate and control essential health information when and where it matters most.</p>
+          <a class="button button-secondary" href="https://www.youtube.com/watch?v=L8AFQC2NttM" target="_blank" rel="noreferrer">Watch on YouTube <span aria-hidden="true">↗</span></a>
         </div>
         <div class="soschain-video-shell reveal">
-          <button class="soschain-video-player" type="button" data-video-id="L8AFQC2NttM" data-video-title="SOSCHAIN 2025: vídeo en inglés con subtítulos en español" data-caption-language="es" aria-label="Reproducir vídeo SOSCHAIN 2025 con subtítulos en español">
-            <img src="assets/soschain-video-2025-en.jpg" alt="Vista previa del vídeo oficial de SOSChain de 2025" width="1280" height="720" loading="lazy" decoding="async">
+          <button class="soschain-video-player" type="button" data-video-id="L8AFQC2NttM" data-video-title="SOSCHAIN 2025 official English video" aria-label="Play the official 2025 SOSCHAIN video">
+            <img src="assets/soschain-video-2025-en.jpg" alt="Preview of the official 2025 SOSChain video" width="1280" height="720" loading="lazy" decoding="async">
             <span class="soschain-video-play" aria-hidden="true">▶</span>
           </button>
         </div>
       </div>
     </section>
 
-    <section class="section contribution" id="salud-publica">
+    <section class="section contribution" id="public-health">
       <div class="container">
-        <div class="section-heading reveal">
-          <div><p class="section-label">Reportes voluntarios</p><h2>Envía un reporte voluntario sin compartir tu identidad</h2></div>
-          <p>Durante una epidemia o pandemia, la persona elige si quiere enviarlo a Fundación UNID o a otras organizaciones participantes. SOSChain separa el reporte estadístico anónimo de la tarjeta y de la historia clínica.</p>
-        </div>
-        <div class="voluntary reveal"><strong>Siempre es opcional.</strong><span>La persona elige si quiere enviarlo, qué información aportar y a qué organización participante dirigirlo.</span></div>
-        <div class="report-summary reveal">
-          <div class="report-use">
-            <h3>¿Para qué sirven?</h3>
-            <p>Los reportes anónimos se agrupan por zona, fecha aproximada y código clínico. Se comparan con estadísticas oficiales para ayudar a ver tendencias durante epidemias y pandemias.</p>
-            <strong>Se comparan estadísticas, no personas. Los reportes no se usan para identificar ni seguir a nadie.</strong>
-          </div>
-          <div class="privacy-summary">
-            <h3>Tu identidad queda fuera</h3>
-            <p>Cada reporte recibe un código nuevo que no permite unirlo con reportes anteriores. No incluye:</p>
-            <ul><li>Nombre o número de tarjeta</li><li>Historia clínica completa o archivos</li><li>Identidad de la clínica o del profesional</li><li>Texto libre ni un código para seguir a la persona</li></ul>
-            <small>SOSChain no crea un gemelo digital con estos reportes estadísticos.</small>
-          </div>
-        </div>
+        <div class="section-heading reveal"><div><p class="section-label">Voluntary reports</p><h2>Send a voluntary report without sharing your identity</h2></div><p>During an epidemic or pandemic, the person chooses whether to send it to Fundación UNID or another participating organisation. The anonymous statistical report remains separate from the card and clinical record.</p></div>
+        <div class="voluntary reveal"><strong>It is always optional.</strong><span>The person chooses whether to send it, what information to contribute and which participating organisation receives it.</span></div>
+        <div class="report-summary reveal"><div class="report-use"><h3>What are they used for?</h3><p>Anonymous reports are grouped by area, approximate date and clinical code. They are compared with official statistics to help spot trends during epidemics and pandemics.</p><strong>Statistics are compared, not people.</strong></div><div class="privacy-summary"><h3>Your identity stays out</h3><p>Each report receives a new code that cannot link it to earlier reports. It does not include:</p><ul><li>Name or card number</li><li>Complete clinical history or files</li><li>Clinic or professional identity</li><li>Free text or a code that can follow the person</li></ul><small>SOSChain does not create a Digital Twin from these statistical reports.</small></div></div>
       </div>
     </section>
 
-    <section class="section access" id="acceso">
+    <section class="section access" id="access">
       <div class="container">
-        <div class="section-heading reveal"><div><p class="section-label">SOSChain</p><h2>Personal y Professional</h2></div><p>Las personas preparan su información y deciden qué compartir. Los profesionales verificados solicitan solo lo necesario para su trabajo.</p></div>
+        <div class="section-heading reveal"><div><p class="section-label">SOSChain</p><h2>Personal and Professional</h2></div><p>People prepare their information and permissions. Verified professionals request only what they need for their role.</p></div>
         <div class="access-grid">
-          <a class="access-option access-personal reveal" href="https://personal-st.soschain.app/es" target="_blank" rel="noreferrer"><div><h3>SOSChain Personal (beta)</h3><strong>Para personas, familiares y cuidadores</strong><p>Prepara tu tarjeta, tus contactos, tu información de emergencia y tus decisiones de privacidad.</p><small>Probar <b aria-hidden="true">↗</b></small></div></a>
-          <a class="access-option access-professional reveal" href="https://professional-st.soschain.app/es" target="_blank" rel="noreferrer"><div><h3>SOSChain Professional (beta)</h3><strong>Para profesionales y servicios de emergencia</strong><p>Identifica la tarjeta, solicita información autorizada y coordina la asistencia.</p><small>Probar <b aria-hidden="true">↗</b></small></div></a>
+          <a class="access-option access-personal reveal" href="https://personal-st.soschain.app/en" target="_blank" rel="noreferrer"><div><h3>SOSChain Personal (beta)</h3><strong>For people, relatives and caregivers</strong><p>Prepare your card, emergency contacts, information and privacy decisions.</p><small>Try <b aria-hidden="true">↗</b></small></div></a>
+          <a class="access-option access-professional reveal" href="https://professional-st.soschain.app/en" target="_blank" rel="noreferrer"><div><h3>SOSChain Professional (beta)</h3><strong>For professionals and emergency services</strong><p>Read an identifier, request authorised information and coordinate care.</p><small>Try <b aria-hidden="true">↗</b></small></div></a>
         </div>
       </div>
     </section>
 
-    <section class="closing"><div class="container closing-inner"><div><h2>Tu información de emergencia, disponible en cualquier lugar e idioma</h2><p>Configura tus contactos y decide qué información podrán solicitar los profesionales autorizados.</p></div><a class="button button-light" href="https://personal-st.soschain.app/es" target="_blank" rel="noreferrer">Crear o gestionar mi tarjeta <span aria-hidden="true">→</span></a></div></section>
+    <section class="closing"><div class="container closing-inner"><div><h2>Your emergency information, available anywhere and in any language</h2><p>Set up your contacts and decide what information authorised professionals may request.</p></div><a class="button button-light" href="https://personal-st.soschain.app/en" target="_blank" rel="noreferrer">Create or manage my card <span aria-hidden="true">→</span></a></div></section>
   </main>
 
-  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#inicio"><img src="assets/soschain-logo.svg" alt="SOSChain" width="248" height="166"></a><p>SOSChain opera en el espacio europeo de datos de confianza Global Data Care.</p></div><nav aria-label="Navegación del pie"><a href="#emergencias">Emergencias</a><a href="#salud-publica">Reportes voluntarios y privacidad</a><a href="#acceso">Acceso</a></nav><div class="footer-contact"><span class="contact-email">&gt;contact&#64;soschain.app&lt;</span><p>Servicio de índice proporcionado por Fundación UNID (beta).</p></div></div><div class="container copyright"><span>Sitio web desarrollado por <a href="https://connectech.info" target="_blank" rel="noreferrer">Connectech.info</a></span></div></footer>
-  <script src="script.js?v=20261102-4"></script>
+  <footer class="site-footer"><div class="container footer-grid"><div><a class="brand footer-brand" href="#home"><img src="assets/soschain-logo.svg" alt="SOSChain" width="248" height="166"></a><p>SOSChain operates within Global Data Care, a trusted European data space.</p></div><nav aria-label="Footer navigation"><a href="#emergencies">Emergencies</a><a href="#public-health">Voluntary reports and privacy</a><a href="#access">Access</a></nav><div class="footer-contact"><span class="contact-email">&gt;contact&#64;soschain.app&lt;</span><p>Service for people provided by Fundación UNID (beta).</p></div></div><div class="container copyright"><span>Website developed by <a href="https://connectech.info" target="_blank" rel="noreferrer">Connectech.info</a></span></div></footer>
+  <script src="script.js?v=20261102-5"></script>
 </body>
 </html>
