@@ -28,7 +28,9 @@ test('is a Spanish SOSChain site with official branding and separate portal acce
   assert.match(html, /assets\/soschain-logo\.svg/);
   assert.match(html, /https:\/\/personal-st\.soschain\.app\/es/);
   assert.match(html, /https:\/\/professional-st\.soschain\.app\/es/);
-  assert.match(html, /SOSChain opera en Global Data Care, un espacio europeo de datos de confianza/i);
+  assert.match(html, /SOSChain opera en el espacio europeo de datos de confianza Global Data Care/i);
+  assert.match(html, /Servicio de índice proporcionado por Fundación UNID \(beta\)/i);
+  assert.doesNotMatch(html, /Servicio para personas proporcionado por Fundación UNID/i);
   assert.match(html, /Sitio web desarrollado por[\s\S]*?Connectech\.info/i);
   assert.match(englishHtml, /SOSChain operates within Global Data Care, a trusted European data space/i);
   assert.match(englishHtml, /Website developed by[\s\S]*?Connectech\.info/i);
@@ -388,7 +390,7 @@ test('shows the official 2025 English SOSChain video on both information pages',
   assert.ok(officialVideoPoster.length > 10_000);
   assert.match(html, /<section class="section video-material" id="video-2025">/i);
   assert.match(html, /data-caption-language="es"/i);
-  assert.match(html, /Vídeo oficial en inglés con subtítulos en español · 2025/i);
+  assert.doesNotMatch(html, /Vídeo oficial en inglés con subtítulos en español · 2025/i);
   assert.match(englishHtml, /<section class="section video-material" id="video-2025-en">/i);
   assert.match(englishHtml, /Official English video · 2025/i);
   assert.match(congressMaterialsCss, /\.soschain-video-player,\s*\.soschain-video-frame\s*\{[^}]*aspect-ratio:\s*16\s*\/\s*9/is);
