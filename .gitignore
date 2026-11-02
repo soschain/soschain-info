@@ -5,3 +5,8 @@
 .DS_Store
 node_modules/
 npm-debug.log*
+
+# Credenciales locales para publicar por FTPS. Nunca se suben a Git.
+.ftp.env
+.ftp.env.*
+!.ftp.env.example
