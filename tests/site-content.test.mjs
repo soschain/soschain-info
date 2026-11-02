@@ -267,6 +267,8 @@ test('scales the complete typography system for small, medium and large text', (
   assert.match(typographyScaleCss, /html\[data-theme="light"\]\s*\{[^}]*--ink:\s*#3f4750[^}]*--muted:\s*#66717c/i);
   assert.match(typographyScaleCss, /\.hero-copy\s*>\s*p:not\(\.hero-kicker\)\s*\{[^}]*font-size:\s*var\(--body-size\)/i);
   assert.match(typographyScaleCss, /\.button\s*\{[^}]*font-size:\s*var\(--body-size\)/i);
+  assert.match(typographyScaleCss, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(2\.625rem,[^,]+,\s*4\.25rem\)/i);
+  assert.match(typographyScaleCss, /\.permission-intro h2,[\s\S]*\.video-material-copy h2\s*\{[^}]*font-size:\s*clamp\(2\.125rem,[^,]+,\s*3\.125rem\)/i);
   assert.doesNotMatch(typographyScaleCss, /font-size:\s*clamp\([^;}]*px/);
 });
 
