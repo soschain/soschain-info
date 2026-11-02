@@ -21,8 +21,10 @@ const spanishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congre
 const englishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-EN.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
 const congressMaterialsCss = await readFile(new URL('../congress-materials.css', import.meta.url), 'utf8').catch(() => '');
 const officialVideoPoster = await readFile(new URL('../assets/soschain-video-2025-en.jpg', import.meta.url)).catch(() => Buffer.alloc(0));
+const htaccess = await readFile(new URL('../.htaccess', import.meta.url), 'utf8').catch(() => '');
 
 test('is a Spanish SOSChain site with official branding and separate portal access', () => {
+  assert.match(htaccess, /^DirectoryIndex index\.html$/m);
   assert.match(html, /<html lang="es">/);
   assert.match(html, /<title>SOSChain \| Información y coordinación cuando importa<\/title>/);
   assert.match(html, /assets\/soschain-logo\.svg/);
