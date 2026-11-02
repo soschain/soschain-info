@@ -267,9 +267,10 @@ test('scales the complete typography system for small, medium and large text', (
   assert.match(typographyScaleCss, /html\[data-font-size="m"\]\s*\{[^}]*font-size:\s*14px[^}]*--body-size:\s*1\.125rem[^}]*--small-size:\s*\.875rem/i);
   assert.match(typographyScaleCss, /html\[data-font-size="l"\]\s*\{[^}]*font-size:\s*15px[^}]*--body-size:\s*1\.125rem[^}]*--small-size:\s*\.875rem/i);
   assert.match(typographyScaleCss, /html\[data-theme="light"\]\s*\{[^}]*--ink:\s*#3f4750[^}]*--heading-ink:\s*#535f6b[^}]*--muted:\s*#66717c/i);
+  assert.match(typographyScaleCss, /html\[data-theme\]\s+:where\(h1, h2, h3, h4, h5, h6\)\s*\{[^}]*color:\s*var\(--heading-ink\)/i);
   assert.match(typographyScaleCss, /\.hero-copy\s*>\s*p:not\(\.hero-kicker\)\s*\{[^}]*font-size:\s*var\(--body-size\)/i);
   assert.match(typographyScaleCss, /\.button\s*\{[^}]*font-size:\s*var\(--body-size\)/i);
-  assert.match(typographyScaleCss, /\.hero h1\s*\{[^}]*color:\s*var\(--heading-ink\)[^}]*font-size:\s*clamp\(2\.625rem,[^,]+,\s*4\.25rem\)/i);
+  assert.match(typographyScaleCss, /\.hero h1\s*\{[^}]*font-size:\s*clamp\(2\.625rem,[^,]+,\s*4\.25rem\)/i);
   assert.match(typographyScaleCss, /\.permission-intro h2,[\s\S]*\.video-material-copy h2\s*\{[^}]*font-size:\s*clamp\(2\.125rem,[^,]+,\s*3\.125rem\)/i);
   assert.doesNotMatch(typographyScaleCss, /font-size:\s*clamp\([^;}]*px/);
 });

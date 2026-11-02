@@ -10,6 +10,10 @@ html[data-theme="light"] {
   --muted: #66717c;
 }
 
+html[data-theme] :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--heading-ink);
+}
+
 html[data-font-size="s"] {
   font-size: 13px;
   --body-size: 1.125rem;
@@ -37,7 +41,6 @@ html[data-font-size="l"] {
 }
 
 .hero h1 {
-  color: var(--heading-ink);
   font-size: clamp(2.625rem, calc(3.5rem + .5vw), 4.25rem);
 }
 
@@ -47,7 +50,6 @@ html[data-font-size="l"] {
 .closing h2,
 .permission-intro h2,
 .video-material-copy h2 {
-  color: var(--heading-ink);
   font-size: clamp(2.125rem, calc(2.5rem + .5vw), 3.125rem);
 }
 
