@@ -1,0 +1,62 @@
+:root {
+  --body-size: 1.125rem;
+  --small-size: .875rem;
+}
+
+html[data-theme="light"] {
+  --ink: #3f4750;
+  --muted: #66717c;
+}
+
+html[data-font-size="s"] {
+  font-size: 13px;
+  --body-size: 1.125rem;
+  --small-size: .875rem;
+}
+
+html[data-font-size="m"] {
+  font-size: 14px;
+  --body-size: 1.125rem;
+  --small-size: .875rem;
+}
+
+html[data-font-size="l"] {
+  font-size: 15px;
+  --body-size: 1.125rem;
+  --small-size: .875rem;
+}
+
+.hero-copy > p:not(.hero-kicker) {
+  font-size: var(--body-size);
+}
+
+.button {
+  font-size: var(--body-size);
+}
+
+.hero h1 {
+  font-size: clamp(3rem, calc(4.5rem + .7vw), 5.125rem);
+}
+
+.section-heading h2,
+.collective-intro h2,
+.privacy h2,
+.closing h2 {
+  font-size: clamp(2.4375rem, calc(3.25rem + .7vw), 3.875rem);
+}
+
+.closing h2 {
+  font-size: clamp(2.125rem, calc(2.75rem + .55vw), 3.25rem);
+}
+
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(2.75rem, calc(2.8rem + 2vw), 3.875rem);
+  }
+
+  .section-heading h2,
+  .collective-intro h2,
+  .privacy h2 {
+    font-size: clamp(2.3125rem, calc(2.05rem + 1.5vw), 3rem);
+  }
+}

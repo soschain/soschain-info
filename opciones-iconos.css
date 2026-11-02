@@ -1,0 +1,105 @@
+@page { size: A4 landscape; margin: 0; }
+
+:root {
+  font-family: Inter, "Avenir Next", Avenir, Arial, sans-serif;
+  color: #102a43;
+  background: #e5ebf0;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+
+.sheet {
+  display: grid;
+  grid-template-rows: 31mm minmax(0, 1fr) 8mm;
+  gap: 4mm;
+  width: 297mm;
+  height: 210mm;
+  margin: 0 auto;
+  padding: 9mm 12mm 7mm;
+  overflow: hidden;
+  background: #fff;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4mm;
+  border-bottom: .5mm solid #a9c8dd;
+}
+
+header > div { display: flex; align-items: baseline; gap: 6mm; }
+.brand { color: #1269a8; font-size: 16pt; font-weight: 600; }
+h1 { margin: 0; font-size: 28pt; font-weight: 600; letter-spacing: -.02em; }
+header p { width: 83mm; margin: 0; color: #486581; font-size: 13pt; line-height: 1.2; text-align: right; }
+
+.families {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 4mm;
+}
+
+.icon-family {
+  display: grid;
+  grid-template-columns: 46mm minmax(0, 1fr);
+  gap: 4mm;
+  min-width: 0;
+  padding: 4mm;
+  border: .4mm solid #a9c8dd;
+  border-radius: 4mm;
+  background: #f8fbfd;
+}
+
+.duotone-family { background: #eaf4fb; }
+.solid-family { background: #f2f5f7; }
+.narrative-family { background: #fff0e8; }
+
+.family-copy { align-self: center; }
+.option { color: #1269a8; font-size: 10pt; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+h2 { margin: 1mm 0 2mm; font-size: 20pt; font-weight: 600; line-height: 1.05; }
+.family-copy p { margin: 0; color: #486581; font-size: 11.5pt; line-height: 1.25; }
+
+.examples {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2mm;
+  align-items: center;
+}
+
+figure {
+  display: grid;
+  gap: 1.5mm;
+  margin: 0;
+  justify-items: center;
+}
+
+svg { width: 27mm; height: 22mm; }
+figcaption { color: #486581; font-size: 10pt; }
+
+.line-family svg { fill: none; stroke: #0b4f82; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+
+.duotone-family svg { stroke-linecap: round; stroke-linejoin: round; }
+.soft-blue { fill: #d9ebf7; stroke: none; }
+.soft-orange { fill: #fff0e8; stroke: none; }
+.outline { fill: none; stroke: #0b4f82; stroke-width: 3; }
+.accent { fill: none; stroke: #1269a8; stroke-width: 3.2; }
+
+.solid { fill: #0b4f82; }
+.cut { fill: none; stroke: #fff; stroke-width: 4; stroke-linecap: round; }
+.cut-wide { fill: none; stroke: #fff; stroke-width: 7; stroke-linecap: round; }
+.paper { fill: #fff; }
+.solid-line { fill: none; stroke: #1269a8; stroke-width: 4; stroke-linecap: round; }
+
+.narrative-family svg { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.person { stroke: #0b4f82; stroke-width: 3; fill: #d9ebf7; }
+.object, .shield { stroke: #0b4f82; stroke-width: 3; fill: #fff; }
+.warm { fill: #fff0e8; stroke: #d98252; stroke-width: 2.5; }
+.connector { stroke: #a9c8dd; stroke-width: 3; stroke-dasharray: 3 4; }
+
+footer { color: #486581; font-size: 9pt; text-align: right; }
+
+@media print {
+  :root, body { background: #fff; }
+}
