@@ -12,9 +12,13 @@ const typographyScaleCss = await readFile(new URL('../typography-scale.css', imp
 const overviewCss = await readFile(new URL('../overview.css', import.meta.url), 'utf8').catch(() => '');
 const presentation = await readFile(new URL('../presentacion.html', import.meta.url), 'utf8').catch(() => '');
 const leaflet = await readFile(new URL('../diptico.html', import.meta.url), 'utf8').catch(() => '');
+const englishLeaflet = await readFile(new URL('../diptico-en.html', import.meta.url), 'utf8').catch(() => '');
 const leafletCss = await readFile(new URL('../diptico.css', import.meta.url), 'utf8').catch(() => '');
 const iconOptions = await readFile(new URL('../opciones-iconos.html', import.meta.url), 'utf8').catch(() => '');
 const iconOptionsCss = await readFile(new URL('../opciones-iconos.css', import.meta.url), 'utf8').catch(() => '');
+const publicDocsIndex = await readFile(new URL('../docs/index.html', import.meta.url), 'utf8').catch(() => '');
+const spanishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-ES.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
+const englishCongressPdf = await readFile(new URL('../docs/SOSChain-three-congress-panels-EN.pdf', import.meta.url)).catch(() => Buffer.alloc(0));
 
 test('is a Spanish SOSChain site with official branding and separate portal access', () => {
   assert.match(html, /<html lang="es">/);
@@ -322,6 +326,30 @@ test('includes three independent landscape A4 congress pages that scale proporti
   assert.match(leafletCss, /height:\s*210mm/);
   assert.doesNotMatch(leafletCss, /grid-template-columns:\s*1fr 1fr/);
   assert.match(leafletCss, /--distance-copy:\s*18pt/);
+});
+
+test('includes a complete English edition of the three congress pages', () => {
+  assert.match(englishLeaflet, /<html lang="en">/);
+  assert.equal((englishLeaflet.match(/class="sheet page-/g) ?? []).length, 3);
+  assert.match(englishLeaflet, /Create your Unified Health Card/i);
+  assert.match(englishLeaflet, /You stay in control/i);
+  assert.match(englishLeaflet, /Three situations where SOSChain helps/i);
+  assert.match(englishLeaflet, /Private calls/i);
+  assert.match(englishLeaflet, /Related patents: US 11,636,776 · 11,960,454 · 12,057,202 · 12,183,439/i);
+  assert.doesNotMatch(englishLeaflet, /Página|Crea tu|Tú mantienes|Llamadas privadas/i);
+});
+
+test('publishes both three-page congress PDFs from one bilingual docs page', () => {
+  assert.match(publicDocsIndex, /<html lang="en">/);
+  assert.match(publicDocsIndex, /SOSChain congress materials/i);
+  assert.match(publicDocsIndex, /href="SOSChain-three-congress-panels-ES\.pdf"/);
+  assert.match(publicDocsIndex, /href="SOSChain-three-congress-panels-EN\.pdf"/);
+  assert.match(publicDocsIndex, /Español/);
+  assert.match(publicDocsIndex, /English/);
+  for (const pdf of [spanishCongressPdf, englishCongressPdf]) {
+    assert.ok(pdf.length > 100_000);
+    assert.equal(pdf.subarray(0, 4).toString('ascii'), '%PDF');
+  }
 });
 
 test('opens with three numbered steps for the card, index and emergency data', () => {
