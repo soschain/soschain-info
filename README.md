@@ -2,6 +2,9 @@
 
 Web pública estática bilingüe para explicar SOSChain, los casos de uso de emergencia y la aportación de señales aisladas para salud pública. El inglés es el idioma predeterminado; el navegador abre español para las variantes `es-*`, y la elección manual queda guardada.
 
+Las reglas de alcance, pruebas y publicación están enlazadas desde
+[`docs/RULES_INDEX.md`](docs/RULES_INDEX.md).
+
 ## Vista local
 
 ```bash
